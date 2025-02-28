@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +9,73 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Upload an Image</h1>
-        <form action="/submit" method="post" enctype="multipart/form-data">
-            <label for="imageUpload" class="file-label">Choose an image:</label>
-            <input type="file" id="imageUpload" name="image" accept="image/*">
-            <input type="submit" value="Segment" class="upload-btn">
-        </form>
-    </div>
-</body>
 
+    <!-- Description Section -->
+    <div class="descriptor">
+        <h1>Segment Anything</h1>
+        <p>Choose your desired image and what segmentation algorithms to apply then press segment!</p>
+    </div>
+
+            <form action="/submit" method="post" enctype="multipart/form-data">
+                <div class="flex-container">
+                    <!-- LEFT SIDE: Image upload section -->
+                    <div class="left">
+                <!-- Upload Section -->
+                <div class="container">
+                    <h1>Upload an Image</h1>
+                    <label for="imageUpload" class="file-label">Choose an image:</label>
+                    <input type="file" id="imageUpload" name="image" accept="image/*">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="container">
+                    <input type="submit" value="Segment" class="upload-btn">
+                </div>
+                </div>
+                
+                <div class="right">
+                    <div class="container">
+                        <div class="checkbox-group">
+                            <p>Traditional segmentation</p>
+                            <div class="checkbox-wrapper-9">
+                                <input class="tgl tgl-flat" id="cb1" type="checkbox" name="segmentation_methods" value="Watershed"/>
+                                <label class="tgl-btn" for="cb1"></label>
+                                <label for="cb1">Watershed</label>
+                            </div>
+        
+                            <div class="checkbox-wrapper-9">
+                                <input class="tgl tgl-flat" id="cb2" type="checkbox" name="segmentation_methods" value="K-means"/>
+                                <label class="tgl-btn" for="cb2"></label>
+                                <label for="cb2">K-means</label>
+                            </div>
+
+                            <div class="checkbox-wrapper-9">
+                                <input class="tgl tgl-flat" id="cb4" type="checkbox" name="segmentation_methods" value="Canny"/>
+                                <label class="tgl-btn" for="cb4"></label>
+                                <label for="cb4">Canny Edge Detection</label>
+                            </div>
+        
+                            <p>AI - Deep learning</p>
+                            <div class="checkbox-wrapper-9">
+                                <input class="tgl tgl-flat" id="cb3" type="checkbox" name="segmentation_methods" value="SAM - Meta"/>
+                                <label class="tgl-btn" for="cb3"></label>
+                                <label for="cb3">SAM (Meta)</label>
+                            </div>
+                            <p>Device Selection</p>
+                                <div class="checkbox-wrapper-9">
+                                    <input class="tgl tgl-flat" id="device-toggle" type="checkbox" name="device" value="cpu">
+                                    <label class="tgl-btn" for="device-toggle"></label>
+                                    <span class="toggle-label">GPU</span>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+
+
+
+            </form>
+        
+</body>
 </html>

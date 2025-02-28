@@ -18,9 +18,6 @@ Hem de posar el fitxer dins de la carpeta on tenim el codi i el nom del fitxer e
 
 import torch
 import torchvision
-#print("PyTorch version:", torch.__version__)
-#print("Torchvision version:", torchvision.__version__)
-#print("CUDA is available:", torch.cuda.is_available())
 import os
 
 import numpy as np
@@ -31,7 +28,7 @@ import sys
 sys.path.append("..")
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 
-def process_image(image_path):
+def process_image(image_path, dev):
             
     image = cv2.imread(image_path)  #Imatge per segmentar
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -39,7 +36,8 @@ def process_image(image_path):
     sam_checkpoint = "sam_vit_b_01ec64.pth" # Model de dades mes petit
     model_type = "vit_b"
 
-    device = "cuda"
+    print("Using at the moemnt: " + dev)
+    device = dev
 
     sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
     sam.to(device=device)
@@ -94,10 +92,5 @@ def process_image(image_path):
     cv2.imwrite(processed_image_path, image)
 
     # Return the relative path for Flask to access the image
-    return processed_image_path.replace('./static', '')
+    return processed_image_path
 
-    plt.figure(figsize=(10,10))
-    plt.imshow(image)
-    show_anns(masks)
-    plt.axis('off')
-    plt.show() 

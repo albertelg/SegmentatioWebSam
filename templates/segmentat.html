@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Processed Image</title>
+    <title>Processed Images</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Processed Image</h1>
-    <!-- Show the processed image -->
-    <img src="{{ processed_image }}" alt="Processed Image">
+
+    <div class="container">
+        <h1>Processed Images</h1>
+        
+        {% if processed_images %}
+            <div class="image-gallery">
+                {% for image_data in processed_images %}
+                    <div class="image-card">
+                        <h2>{{ image_data.label }} Segmentation</h2>
+                        <img src="{{ image_data.path }}" alt="{{ image_data.label }}">
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No images processed.</p>
+        {% endif %}
+    </div>
+    
 </body>
 </html>
